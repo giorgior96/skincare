@@ -19,10 +19,10 @@ function App() {
   const containerRef = useRef(null);
 
   const EmailForm = ({ id }) => (
-    <form className="input-group" onSubmit={(e) => e.preventDefault()} style={{ background: '#f1f5f9', padding: '0.5rem', borderRadius: '9999px', boxShadow: '0 20px 40px rgba(0,0,0,0.05)', display: 'flex', width: '100%', maxWidth: '500px' }}>
-      <input type="email" id={id} placeholder="La tua migliore email..." className="input-field" style={{ border: 'none', background: 'transparent', color: '#0b1120', flex: 1 }} required />
-      <button type="submit" className="btn btn-accent" style={{ padding: '1rem 2rem', color: '#020617', whiteSpace: 'nowrap' }}>
-        ACCEDI <ArrowRight size={20} style={{ marginLeft: '8px' }}/>
+    <form className="input-group" onSubmit={(e) => e.preventDefault()} style={{ background: '#f1f5f9', padding: '0.4rem', borderRadius: '9999px', boxShadow: '0 20px 40px rgba(0,0,0,0.05)', display: 'flex', width: '100%', maxWidth: '550px' }}>
+      <input type="email" id={id} placeholder="La tua email per sbloccare lo sconto..." className="input-field" style={{ border: 'none', background: 'transparent', color: '#0b1120', flex: 1, padding: '1rem' }} required />
+      <button type="submit" className="btn btn-accent" style={{ padding: '0.8rem 1.5rem', color: '#020617', whiteSpace: 'nowrap' }}>
+        AVVISAMI AL LANCIO <ArrowRight size={20} style={{ marginLeft: '8px' }}/>
       </button>
     </form>
   );
@@ -94,7 +94,7 @@ function App() {
       </section>
 
       {/* 2. IL PROBLEMA (Impact Typography) */}
-      <section className="section" style={{ background: '#020617', color: 'white', padding: '10rem 0' }}>
+      <section className="section" style={{ background: '#020617', color: 'white' }}>
         <div className="container">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} style={{ maxWidth: '900px', margin: '0 auto' }}>
             
@@ -121,7 +121,7 @@ function App() {
       </section>
 
       {/* 3. LA SOLUZIONE (Minimalist Cards) */}
-      <section className="section" style={{ background: '#ffffff', overflow: 'hidden', padding: '12rem 0' }}>
+      <section className="section" style={{ background: '#ffffff', overflow: 'hidden' }}>
         <div className="container">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
             
@@ -165,7 +165,7 @@ function App() {
       </section>
 
       {/* 5. EDUCATIONAL / SCIENZA (AUTHORITY) - TYPOGRAPHY ONLY */}
-      <section className="section" style={{ background: 'var(--brand-accent)', color: '#0b1120', padding: '8rem 0' }}>
+      <section className="section" style={{ background: 'var(--brand-accent)', color: '#0b1120' }}>
         <div className="container text-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} style={{ maxWidth: '800px', margin: '0 auto' }}>
             <motion.h2 variants={fadeIn} style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '2rem', lineHeight: 1, textTransform: 'uppercase', fontWeight: 900 }}>
@@ -191,7 +191,7 @@ function App() {
       </section>
 
       {/* 6. SOCIAL PROOF */}
-      <section className="section" style={{ background: '#f8fafc', padding: '10rem 0' }}>
+      <section className="section" style={{ background: '#f8fafc' }}>
         <div className="container">
           <h2 className="text-center" style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', marginBottom: '4rem', fontWeight: 900, textTransform: 'uppercase', color: '#0b1120' }}>
             CHI HA GIÀ FATTO I TEST.
@@ -215,7 +215,7 @@ function App() {
       </section>
 
       {/* 7. FINAL CTA (LEAD GEN) */}
-      <section id="join" className="section cta-section" style={{ padding: '12rem 0', background: '#020617' }}>
+      <section id="join" className="section cta-section" style={{ background: '#020617' }}>
          <div className="container">
            <motion.div 
              initial={{ scale: 0.95, opacity: 0 }}

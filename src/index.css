@@ -90,7 +90,13 @@ button {
 }
 
 .section {
-  padding: 6rem 0;
+  padding: 5rem 0;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 10rem 0;
+  }
 }
 
 /* specific sections */
@@ -142,13 +148,14 @@ button {
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 4rem;
+  gap: 2rem;
   align-items: center;
 }
 
 @media (min-width: 900px) {
   .grid-2 {
     grid-template-columns: 1fr 1fr;
+    gap: 4rem;
   }
 }
 
@@ -229,6 +236,7 @@ button {
 @media (min-width: 768px) {
   .input-group {
     flex-direction: row;
+    max-width: 600px;
   }
 }
 
