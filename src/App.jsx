@@ -43,45 +43,50 @@ function App() {
       </nav>
 
       {/* 1. HERO SECTION (Conversion Optimized) */}
-      <section className="section hero" style={{ backgroundColor: '#ffffff', color: '#0b1120', minHeight: '100vh', display: 'flex', alignItems: 'center', position: 'relative', paddingTop: '7rem' }}>
-        <div className="container" style={{ position: 'relative', zIndex: 10, width: '100%' }}>
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="grid-2" style={{ alignItems: 'center' }}>
-            
-            <div style={{ paddingRight: '2rem' }}>
-              <motion.p variants={fadeIn} style={{ color: 'var(--brand-accent)', fontWeight: 800, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '1.5rem', display: 'inline-block', background: '#0b1120', padding: '0.4rem 1rem', borderRadius: '4px' }}>
-                Skincare essenziale per Gen-Z
-              </motion.p>
-              <motion.h1 variants={fadeIn} className="hero-title" style={{ color: '#0b1120', fontSize: 'clamp(3rem, 7vw, 5rem)', textTransform: 'uppercase', lineHeight: 0.9 }}>
-                LA TUA PELLE<br/> <span style={{ color: 'transparent', WebkitTextStroke: '2px #0b1120' }}>NON È UN BOSS</span><br/> IMPOSSIBILE.
-              </motion.h1>
-              <motion.p variants={fadeIn} style={{ fontSize: '1.25rem', marginBottom: '2.5rem', color: '#475569', maxWidth: '400px', marginTop: '1.5rem', fontWeight: 500, lineHeight: 1.4 }}>
-                Skincare esageratamente facile. 3 step. 2 minuti. Zero sbatti. Formulato con i dermatologi per abbattere brufoli e pelle grassa, non la tua pazienza.
-              </motion.p>
+      <section className="section hero" style={{ backgroundColor: '#ffffff', color: '#0b1120', minHeight: '100vh', display: 'flex', alignItems: 'center', position: 'relative', paddingTop: '7rem', overflow: 'hidden' }}>
+        
+        {/* Full Bleed Background Video */}
+        <video 
+          src={heroVideo} 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%', 
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0
+          }} 
+        />
+        
+        {/* Soft Fade Overlay for text readability */}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%)', zIndex: 1 }} />
 
-              <motion.div variants={fadeIn} style={{ marginTop: '2rem' }}>
-                {/* ABOVE THE FOLD LEAD GEN */}
-                <EmailForm id="hero-email" />
-                <p style={{ fontSize: '0.9rem', marginTop: '1rem', color: '#64748b', fontWeight: 600 }}>
-                  ⚡️ Iscriviti per sbloccare lo sconto (Solo 500 posti)
-                </p>
-              </motion.div>
-            </div>
+        <div className="container" style={{ position: 'relative', zIndex: 10, width: '100%' }}>
+          <motion.div initial="hidden" animate="visible" variants={staggerContainer} style={{ maxWidth: '650px', paddingRight: '1rem' }}>
             
-            <motion.div variants={fadeIn} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <video 
-                src={heroVideo} 
-                autoPlay 
-                loop 
-                muted 
-                playsInline
-                style={{
-                  width: '100%', 
-                  height: 'auto',
-                  objectFit: 'cover',
-                  display: 'block'
-                }} 
-              />
+            <motion.p variants={fadeIn} style={{ color: 'var(--brand-accent)', fontWeight: 800, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '1.5rem', display: 'inline-block', background: '#0b1120', padding: '0.4rem 1rem', borderRadius: '4px' }}>
+              Skincare essenziale per Gen-Z
+            </motion.p>
+            <motion.h1 variants={fadeIn} className="hero-title" style={{ color: '#0b1120', fontSize: 'clamp(3.5rem, 8vw, 5.5rem)', textTransform: 'uppercase', lineHeight: 0.9 }}>
+              LA TUA PELLE<br/> <span style={{ color: 'transparent', WebkitTextStroke: '2px #0b1120' }}>NON È UN BOSS</span><br/> IMPOSSIBILE.
+            </motion.h1>
+            <motion.p variants={fadeIn} style={{ fontSize: '1.25rem', marginBottom: '2.5rem', color: '#475569', maxWidth: '400px', marginTop: '1.5rem', fontWeight: 500, lineHeight: 1.4 }}>
+              Skincare esageratamente facile. 3 step. 2 minuti. Zero sbatti. Formulato con i dermatologi per abbattere brufoli e pelle grassa, non la tua pazienza.
+            </motion.p>
+
+            <motion.div variants={fadeIn} style={{ marginTop: '2rem' }}>
+              {/* ABOVE THE FOLD LEAD GEN */}
+              <EmailForm id="hero-email" />
+              <p style={{ fontSize: '0.9rem', marginTop: '1rem', color: '#64748b', fontWeight: 600 }}>
+                ⚡️ Iscriviti per sbloccare lo sconto (Solo 500 posti)
+              </p>
             </motion.div>
+            
           </motion.div>
         </div>
       </section>
