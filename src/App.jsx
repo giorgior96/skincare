@@ -82,10 +82,10 @@ function App() {
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} style={{ maxWidth: '650px', padding: 'clamp(1.5rem, 5vw, 3rem)', background: 'rgba(255, 255, 255, 0.75)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', borderRadius: 'clamp(1rem, 3vw, 2rem)', border: '1px solid rgba(255,255,255,0.6)', boxShadow: '0 40px 80px rgba(0,0,0,0.05)' }}>
             
             <motion.p variants={fadeIn} style={{ color: 'var(--brand-accent)', fontWeight: 800, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '1.5rem', display: 'inline-block', background: '#0b1120', padding: '0.4rem 1rem', borderRadius: '4px', fontSize: 'clamp(0.7rem, 2vw, 1rem)' }}>
-              Skincare essenziale per Gen-Z
+              Routine viso essenziale per Gen-Z
             </motion.p>
             <motion.h1 variants={fadeIn} className="hero-title" style={{ color: '#0b1120', fontSize: 'clamp(2rem, 10vw, 5.5rem)', textTransform: 'uppercase', lineHeight: 0.9, overflowWrap: 'break-word', wordWrap: 'break-word' }}>
-              LA SKINCARE<br/> <span style={{ color: 'transparent', WebkitTextStroke: '2px #0b1120' }}>DA UOMO</span><br/> SENZA GIRI DI PAROLE.
+              IL KIT VISO<br/> <span style={{ color: 'transparent', WebkitTextStroke: '2px #0b1120' }}>DA UOMO</span><br/> SENZA GIRI DI PAROLE.
             </motion.h1>
             <motion.p variants={fadeIn} style={{ fontSize: '1.25rem', marginBottom: '2.5rem', color: '#475569', maxWidth: '400px', marginTop: '1.5rem', fontWeight: 500, lineHeight: 1.4 }}>
               Diciamocelo. Non hai voglia di passare 20 minuti davanti allo specchio. BROS è la routine da 2 minuti, progettata per i ragazzi che vogliono pelle pulita e zero sbattimenti.
@@ -149,7 +149,7 @@ function App() {
             
             <div className="text-center" style={{ maxWidth: '800px', margin: '0 auto 6rem auto' }}>
               <motion.h2 variants={fadeIn} style={{ fontSize: 'clamp(3rem, 5vw, 4rem)', color: '#0b1120', textTransform: 'uppercase', lineHeight: 0.9, fontWeight: 900 }}>
-                LA SKINCARE DEVE ESSERE INVISIBILE E VELOCE.
+                LA RIGENERAZIONE DEL VISO DEVE ESSERE INVISIBILE E VELOCE.
               </motion.h2>
             </div>
 
