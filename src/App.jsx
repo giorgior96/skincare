@@ -63,11 +63,10 @@ function App() {
           }} 
         />
         
-        {/* Soft Fade Overlay for text readability */}
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%)', zIndex: 1 }} />
+        {/* Removed Linear Gradient layer to replace it with a focused glass frame */}
 
         <div className="container" style={{ position: 'relative', zIndex: 10, width: '100%' }}>
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer} style={{ maxWidth: '650px', paddingRight: '1rem' }}>
+          <motion.div initial="hidden" animate="visible" variants={staggerContainer} style={{ maxWidth: '650px', padding: '3rem', background: 'rgba(255, 255, 255, 0.75)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', borderRadius: '2rem', border: '1px solid rgba(255,255,255,0.6)', boxShadow: '0 40px 80px rgba(0,0,0,0.05)' }}>
             
             <motion.p variants={fadeIn} style={{ color: 'var(--brand-accent)', fontWeight: 800, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '1.5rem', display: 'inline-block', background: '#0b1120', padding: '0.4rem 1rem', borderRadius: '4px' }}>
               Skincare essenziale per Gen-Z
