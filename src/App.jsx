@@ -155,7 +155,7 @@ function App() {
 
             <div className="grid-3">
               <motion.div variants={fadeIn} whileHover={{ y: -10 }} className="card" style={{ padding: '3rem 2rem', background: '#f8fafc', border: 'none' }}>
-                <h1 style={{ fontSize: '4rem', color: '#0b1120', opacity: 0.1, position: 'absolute', top: '1rem', right: '2rem' }}>01</h1>
+                <h1 style={{ fontSize: '4rem', color: 'var(--brand-accent)', opacity: 0.9, position: 'absolute', top: '1rem', right: '2rem' }}>01</h1>
                 <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#0b1120' }}>IL RESET</h3>
                 <p style={{ fontSize: '1.125rem', color: '#475569', fontWeight: 500 }}>Un detergente che spazza via smog e grasso, progettato per pelle giovane. Non secca, ripristina.</p>
                 <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -164,7 +164,7 @@ function App() {
               </motion.div>
               
               <motion.div variants={fadeIn} whileHover={{ y: -10 }} className="card" style={{ padding: '3rem 2rem', background: '#f8fafc', border: 'none' }}>
-                <h1 style={{ fontSize: '4rem', color: '#0b1120', opacity: 0.1, position: 'absolute', top: '1rem', right: '2rem' }}>02</h1>
+                <h1 style={{ fontSize: '4rem', color: 'var(--brand-accent)', opacity: 0.9, position: 'absolute', top: '1rem', right: '2rem' }}>02</h1>
                 <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#0b1120' }}>LO SCUDO</h3>
                 <p style={{ fontSize: '1.125rem', color: '#475569', fontWeight: 500 }}>Crema idratante che placa i rossori. Formulazione opaca: zero effetto lucido, non unge mai.</p>
                 <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -173,7 +173,7 @@ function App() {
               </motion.div>
 
               <motion.div variants={fadeIn} whileHover={{ y: -10 }} className="card" style={{ padding: '3rem 2rem', background: '#f8fafc', border: 'none' }}>
-                <h1 style={{ fontSize: '4rem', color: '#0b1120', opacity: 0.1, position: 'absolute', top: '1rem', right: '2rem' }}>03</h1>
+                <h1 style={{ fontSize: '4rem', color: 'var(--brand-accent)', opacity: 0.9, position: 'absolute', top: '1rem', right: '2rem' }}>03</h1>
                 <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#0b1120' }}>L'UPGRADE</h3>
                 <p style={{ fontSize: '1.125rem', color: '#475569', fontWeight: 500 }}>Detergente corpo no-bs. Doccia veloce, niente profumi sgravi, niente impurità sulla schiena.</p>
                 <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
