@@ -82,15 +82,20 @@ function App() {
                 loop 
                 muted 
                 playsInline
-                initial={{ y: 20 }}
-                animate={{ y: [0, -20, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                initial={{ y: 20, scale: 0.9, opacity: 0 }}
+                animate={{ y: [0, -30, 0], scale: 1.25, opacity: 1 }}
+                transition={{ 
+                  y: { duration: 8, repeat: Infinity, ease: 'easeInOut' },
+                  scale: { duration: 1.5, ease: 'easeOut' },
+                  opacity: { duration: 1 }
+                }}
                 style={{
                   width: '100%', 
-                  maxWidth: '500px', 
-                  borderRadius: '1rem',
+                  maxWidth: '750px', 
                   mixBlendMode: 'multiply',
-                  filter: 'contrast(1.05) drop-shadow(0 40px 40px rgba(0,0,0,0.1))'
+                  filter: 'contrast(1.1) drop-shadow(0 60px 50px rgba(0,0,0,0.15))',
+                  display: 'block',
+                  marginLeft: '-10%' /* Pulls it slightly out of the grid bounds for immersion */
                 }} 
               />
             </motion.div>
