@@ -44,15 +44,7 @@ function App() {
 
       {/* 1. HERO SECTION (Conversion Optimized) */}
       <section className="section hero" style={{ backgroundColor: '#ffffff', color: '#0b1120', minHeight: '100vh', display: 'flex', alignItems: 'center', position: 'relative', paddingTop: '7rem' }}>
-        
-        {/* Animated Aura Background */}
-        <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-          <div style={{ position: 'absolute', inset: 0, background: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.05%22/%3E%3C/svg%3E")', opacity: 0.8, zIndex: 1 }} />
-          <motion.div animate={{ x: [0, 50, 0], y: [0, -80, 0], scale: [1, 1.2, 1] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }} style={{ position: 'absolute', top: '-10%', left: '-10%', width: '50vw', height: '50vw', background: 'radial-gradient(circle, rgba(0, 227, 150, 0.4) 0%, rgba(255,255,255,0) 70%)', filter: 'blur(80px)', borderRadius: '50%' }} />
-          <motion.div animate={{ x: [0, -50, 0], y: [0, 50, 0], scale: [1, 1.3, 1] }} transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 1 }} style={{ position: 'absolute', bottom: '-20%', right: '-5%', width: '60vw', height: '60vw', background: 'radial-gradient(circle, rgba(37, 99, 235, 0.2) 0%, rgba(255,255,255,0) 70%)', filter: 'blur(100px)', borderRadius: '50%' }} />
-        </div>
-
-        <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+        <div className="container" style={{ position: 'relative', zIndex: 10, width: '100%' }}>
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="grid-2" style={{ alignItems: 'center' }}>
             
             <div style={{ paddingRight: '2rem' }}>
@@ -75,27 +67,18 @@ function App() {
               </motion.div>
             </div>
             
-            <motion.div variants={fadeIn} style={{ display: 'flex', justifyContent: 'center' }}>
-              <motion.video 
+            <motion.div variants={fadeIn} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <video 
                 src={heroVideo} 
                 autoPlay 
                 loop 
                 muted 
                 playsInline
-                initial={{ y: 20, scale: 0.9, opacity: 0 }}
-                animate={{ y: [0, -30, 0], scale: 1.25, opacity: 1 }}
-                transition={{ 
-                  y: { duration: 8, repeat: Infinity, ease: 'easeInOut' },
-                  scale: { duration: 1.5, ease: 'easeOut' },
-                  opacity: { duration: 1 }
-                }}
                 style={{
                   width: '100%', 
-                  maxWidth: '750px', 
-                  mixBlendMode: 'multiply',
-                  filter: 'contrast(1.1) drop-shadow(0 60px 50px rgba(0,0,0,0.15))',
-                  display: 'block',
-                  marginLeft: '-10%' /* Pulls it slightly out of the grid bounds for immersion */
+                  height: 'auto',
+                  objectFit: 'cover',
+                  display: 'block'
                 }} 
               />
             </motion.div>
