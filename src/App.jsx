@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Droplets, Zap, ChevronRight, CheckCircle2, FlaskConical, Stethoscope, Star, ArrowRight } from 'lucide-react';
 import heroVideo from './assets/BROS_cream_jar_202603311348.mp4';
@@ -18,6 +18,7 @@ const staggerContainer = {
 
 function App() {
   const containerRef = useRef(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const EmailForm = ({ id }) => (
     <form className="input-group" onSubmit={(e) => e.preventDefault()} style={{ width: '100%' }}>
@@ -30,15 +31,27 @@ function App() {
 
   return (
     <div ref={containerRef} style={{ position: 'relative', overflowX: 'hidden' }}>
+      {/* Due Step Opt-in Modal */}
+      {isModalOpen && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(2, 6, 23, 0.85)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)' }}>
+          <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} style={{ background: '#ffffff', padding: '3rem', borderRadius: '1.5rem', width: '90%', maxWidth: '500px', position: 'relative', boxShadow: '0 40px 80px rgba(0,0,0,0.5)' }}>
+            <button onClick={() => setIsModalOpen(false)} style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', background: 'none', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: '#0b1120' }}>✕</button>
+            <h3 style={{ fontSize: '2rem', marginBottom: '1rem', fontWeight: 900, color: '#0b1120', textTransform: 'uppercase' }}>SEI DENTRO.</h3>
+            <p style={{ marginBottom: '2rem', color: '#475569', fontSize: '1.1rem', fontWeight: 500 }}>Lascia la tua email per entrare in lista. Il Day 1 sganciamo lo sconto e diamo l'accesso riservato ai primi 500 iscritti.</p>
+            <EmailForm id="popup-email" />
+            <p style={{ fontSize: '0.85rem', marginTop: '1.5rem', color: '#94a3b8' }}>Nessun trucco, niente spam. Puoi disiscriverti in qualsiasi momento.</p>
+          </motion.div>
+        </div>
+      )}
       {/* Navbar */}
       <nav className="navbar" style={{ position: 'absolute', top: 0, width: '100%', zIndex: 100 }}>
         <div className="container nav-content">
           <div className="logo" style={{ color: '#0b1120', fontSize: '1.8rem' }}>
             BROS<span>.</span>
           </div>
-          <a href="#join" className="btn" style={{ padding: '0.5rem 1.2rem', fontSize: '0.9rem', border: '2px solid #0b1120', color: '#0b1120', borderRadius: '999px' }}>
+          <button onClick={() => setIsModalOpen(true)} className="btn" style={{ padding: '0.5rem 1.2rem', fontSize: '0.9rem', border: '2px solid #0b1120', color: '#0b1120', borderRadius: '999px', background: 'transparent' }}>
             Lista d'attesa
-          </a>
+          </button>
         </div>
       </nav>
 
@@ -72,15 +85,17 @@ function App() {
               Skincare essenziale per Gen-Z
             </motion.p>
             <motion.h1 variants={fadeIn} className="hero-title" style={{ color: '#0b1120', fontSize: 'clamp(2rem, 10vw, 5.5rem)', textTransform: 'uppercase', lineHeight: 0.9, overflowWrap: 'break-word', wordWrap: 'break-word' }}>
-              LA TUA PELLE<br/> <span style={{ color: 'transparent', WebkitTextStroke: '2px #0b1120' }}>NON È UN BOSS</span><br/> IMPOSSIBILE.
+              LA SKINCARE<br/> <span style={{ color: 'transparent', WebkitTextStroke: '2px #0b1120' }}>DA UOMO</span><br/> SENZA GIRI DI PAROLE.
             </motion.h1>
             <motion.p variants={fadeIn} style={{ fontSize: '1.25rem', marginBottom: '2.5rem', color: '#475569', maxWidth: '400px', marginTop: '1.5rem', fontWeight: 500, lineHeight: 1.4 }}>
-              Skincare esageratamente facile. 3 step. 2 minuti. Zero sbatti. Formulato con i dermatologi per abbattere brufoli e pelle grassa, non la tua pazienza.
+              Diciamocelo. Non hai voglia di passare 20 minuti davanti allo specchio. BROS è la routine da 2 minuti, progettata per i ragazzi che vogliono pelle pulita e zero sbattimenti.
             </motion.p>
 
             <motion.div variants={fadeIn} style={{ marginTop: '2rem' }}>
-              {/* ABOVE THE FOLD LEAD GEN */}
-              <EmailForm id="hero-email" />
+              {/* TWO STEP LEAD GEN */}
+              <button onClick={() => setIsModalOpen(true)} className="btn btn-accent" style={{ padding: '1.2rem 2.5rem', fontSize: '1.1rem', whiteSpace: 'nowrap' }}>
+                SONO INTERESSATO <ArrowRight size={20} style={{ marginLeft: '8px' }}/>
+              </button>
               <p style={{ fontSize: '0.9rem', marginTop: '1rem', color: '#64748b', fontWeight: 600 }}>
                 ⚡️ Iscriviti per sbloccare lo sconto (Solo 500 posti)
               </p>
@@ -95,22 +110,32 @@ function App() {
         <div className="container">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} style={{ maxWidth: '900px', margin: '0 auto' }}>
             
-            <motion.h2 variants={fadeIn} style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', marginBottom: '4rem', lineHeight: 1, fontWeight: 900, textTransform: 'uppercase' }}>
-              SIAMO ONESTI. LE STIAMO PROVANDO TUTTE... <span style={{ color: 'var(--brand-accent)' }}>MALE.</span>
-            </motion.h2>
+            <div className="grid-2" style={{ alignItems: 'flex-start' }}>
+              {/* Left text column */}
+              <div>
+                <motion.h2 variants={fadeIn} style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', marginBottom: '4rem', lineHeight: 1, fontWeight: 900, textTransform: 'uppercase' }}>
+                  SIAMO ONESTI. LE STIAMO PROVANDO TUTTE... <span style={{ color: 'var(--brand-accent)' }}>MALE.</span>
+                </motion.h2>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '3rem' }}>
-              {[
-                { icon: Droplets, title: "IL BAGNOSCHIUMA", desc: "No bro, non va in faccia. Ti nuclearizza la pelle e la fa tirare." },
-                { icon: ShieldCheck, title: "QUELLA RUBATA", desc: "La crema di tua madre è fighissima, ma ti fa sembrare una palla da bowling unta." },
-                { icon: Zap, title: "TROPPO SBATTI", desc: "I tutorial su TikTok con 10 passaggi sono roba da pazzi. Non abbiamo tempo." }
-              ].map((item, idx) => (
-                <motion.div key={idx} variants={fadeIn} style={{ borderLeft: '4px solid var(--brand-accent)', paddingLeft: '1.5rem' }}>
-                  <item.icon size={36} color="var(--brand-accent)" style={{ marginBottom: '1rem' }} />
-                  <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', fontWeight: 900 }}>{item.title}</h3>
-                  <p style={{ fontSize: '1.125rem', color: '#94a3b8' }}>{item.desc}</p>
-                </motion.div>
-              ))}
+                <div style={{ display: 'grid', gridTemplateColumns: 'minmax(280px, 1fr)', gap: '3rem' }}>
+                  {[
+                    { icon: Droplets, title: "IL BAGNOSCHIUMA", desc: "No bro, non va in faccia. Ti nuclearizza la pelle e la fa tirare." },
+                    { icon: ShieldCheck, title: "QUELLA RUBATA", desc: "La crema fighissima dadonna ti fa sembrare una palla da bowling unta e lucida." },
+                    { icon: Zap, title: "TROPPO SBATTI", desc: "I tutorial su TikTok con 10 passaggi sono roba da pazzi. Non abbiamo tempo." }
+                  ].map((item, idx) => (
+                    <motion.div key={idx} variants={fadeIn} style={{ borderLeft: '4px solid var(--brand-accent)', paddingLeft: '1.5rem' }}>
+                      <item.icon size={36} color="var(--brand-accent)" style={{ marginBottom: '1rem' }} />
+                      <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', fontWeight: 900 }}>{item.title}</h3>
+                      <p style={{ fontSize: '1.125rem', color: '#94a3b8' }}>{item.desc}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right photo column for target visual ID */}
+              <motion.div variants={fadeIn} style={{ position: 'relative' }}>
+                <img src="/guy.png" alt="BROS Guy" style={{ width: '100%', height: 'auto', borderRadius: '1.5rem', boxShadow: '0 20px 50px rgba(0,0,0,0.3)', objectFit: 'cover' }} />
+              </motion.div>
             </div>
 
           </motion.div>
@@ -193,18 +218,22 @@ function App() {
           <h2 className="text-center" style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', marginBottom: '4rem', fontWeight: 900, textTransform: 'uppercase', color: '#0b1120' }}>
             CHI HA GIÀ FATTO I TEST.
           </h2>
-          <div className="grid-3">
+             <div className="grid-3">
              {[
-               { name: "Marco, 21 anni", text: "Mai messo una crema in vita mia, mi fa schifo l'effetto bagnato. Questa scompare non appena la metti e mi ha dimezzato l'acne." },
-               { name: "Ale, 18 anni", text: "Ci metto 1 minuto netto e sono a posto. Il detergente fa il suo lavoro, zero tiraggio estremo della pelle. Tanta roba." },
-               { name: "Luca, 24 anni", text: "La mia tipa ha smesso di dire che ho la fronte secca e unta. Questo kit ha salvato la relazione. GG." }
+               { name: "Marco, 21 anni", img: "https://i.pravatar.cc/150?u=bros1", text: "Mai messo una crema in vita mia, mi fa schifo l'effetto bagnato. Questa scompare non appena la metti e mi ha dimezzato l'acne." },
+               { name: "Ale, 18 anni", img: "https://i.pravatar.cc/150?u=bros2", text: "Ci metto 1 minuto netto e sono a posto. Il detergente fa il suo lavoro, zero tiraggio estremo della pelle. Tanta roba." },
+               { name: "Luca, 24 anni", img: "https://i.pravatar.cc/150?u=bros3", text: "La mia tipa ha smesso di dire che ho la fronte secca e unta. Questo kit ha salvato la relazione. GG." }
              ].map((r, i) => (
                 <div key={i} className="card" style={{ padding: '2.5rem', background: '#ffffff', border: '1px solid #e2e8f0', boxShadow: '0 20px 40px rgba(0,0,0,0.02)' }}>
                   <div style={{ display: 'flex', gap: '4px', marginBottom: '1.5rem', color: '#0b1120' }}>
                     {[1,2,3,4,5].map(n => <Star key={n} size={20} fill="currentColor" />)}
                   </div>
                   <p style={{ fontSize: '1.25rem', color: '#0b1120', fontWeight: 600, fontStyle: 'italic', marginBottom: '1.5rem' }}>"{r.text}"</p>
-                  <div style={{ fontWeight: 800, fontSize: '1rem', color: '#94a3b8', textTransform: 'uppercase' }}>– {r.name}</div>
+                  
+                  <div style={{ display: 'flex', alignItems: 'center', marginTop: 'auto' }}>
+                    <img src={r.img} alt={r.name} style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover', marginRight: '1rem' }} />
+                    <div style={{ fontWeight: 800, fontSize: '1rem', color: '#94a3b8', textTransform: 'uppercase' }}>{r.name}</div>
+                  </div>
                 </div>
              ))}
           </div>
@@ -228,7 +257,9 @@ function App() {
             </p>
             
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <EmailForm id="footer-email" />
+              <button onClick={() => setIsModalOpen(true)} className="btn btn-accent" style={{ padding: '1.2rem 3rem', fontSize: '1.2rem', whiteSpace: 'nowrap' }}>
+                SONO INTERESSATO <ArrowRight size={20} style={{ marginLeft: '8px' }}/>
+              </button>
             </div>
             
             <p style={{ fontSize: '0.875rem', marginTop: '2rem', opacity: 0.6, color: 'white' }}>
