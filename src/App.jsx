@@ -186,27 +186,33 @@ function App() {
         </div>
       </section>
 
-      {/* 5. EDUCATIONAL / SCIENZA (AUTHORITY) - TYPOGRAPHY ONLY */}
+      {/* 5. EDUCATIONAL / SCIENZA (AUTHORITY) */}
       <section className="section" style={{ background: 'var(--brand-accent)', color: '#0b1120' }}>
-        <div className="container text-center">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} style={{ maxWidth: '800px', margin: '0 auto' }}>
-            <motion.h2 variants={fadeIn} style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '2rem', lineHeight: 1, textTransform: 'uppercase', fontWeight: 900 }}>
-              SEMBRA FACILE, MA DIETRO C' È LA SCIENZA VERA.
-            </motion.h2>
-            <motion.p variants={fadeIn} style={{ fontSize: '1.5rem', fontWeight: 600, opacity: 0.8, marginBottom: '4rem' }}>
-              Formulato in laboratorio. Zero profumi chimici. Dermatologicamente spietato contro i brufoli, ma delicato sulla barriera cutanea.
-            </motion.p>
+        <div className="container">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid-2">
+            <div>
+              <motion.h2 variants={fadeIn} style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '2rem', lineHeight: 1, textTransform: 'uppercase', fontWeight: 900 }}>
+                SEMBRA FACILE, MA DIETRO C'È LA SCIENZA VERA.
+              </motion.h2>
+              <motion.p variants={fadeIn} style={{ fontSize: '1.5rem', fontWeight: 600, opacity: 0.8, marginBottom: '3rem' }}>
+                Formulato in laboratorio. Zero profumi chimici. Dermatologicamente spietato contro i brufoli, ma delicato sulla barriera cutanea.
+              </motion.p>
+              
+              <motion.div variants={fadeIn} style={{ display: 'grid', gap: '2rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', fontWeight: 900, fontSize: '1.25rem' }}>
+                  <Stethoscope size={36} style={{ marginRight: '1rem' }} /> DERMATOLOGI
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', fontWeight: 900, fontSize: '1.25rem' }}>
+                  <FlaskConical size={36} style={{ marginRight: '1rem' }} /> INGREDIENTI CLEAN
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', fontWeight: 900, fontSize: '1.25rem' }}>
+                  <ShieldCheck size={36} style={{ marginRight: '1rem' }} /> PELLI SENSIBILI
+                </div>
+              </motion.div>
+            </div>
             
-            <motion.div variants={fadeIn} style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '3rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: 900, fontSize: '1.25rem' }}>
-                <Stethoscope size={48} style={{ marginBottom: '1rem' }} /> DERMATOLOGI
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: 900, fontSize: '1.25rem' }}>
-                <FlaskConical size={48} style={{ marginBottom: '1rem' }} /> INGREDIENTI CLEAN
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontWeight: 900, fontSize: '1.25rem' }}>
-                <ShieldCheck size={48} style={{ marginBottom: '1rem' }} /> PELLI SENSIBILI
-              </div>
+            <motion.div variants={fadeIn} style={{ display: 'flex', alignItems: 'center' }}>
+               <img src="/ragazzo_bagno.png" alt="Ragazzo che si lava il viso" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '1.5rem', boxShadow: '0 20px 50px rgba(0,0,0,0.2)' }} />
             </motion.div>
           </motion.div>
         </div>
@@ -220,9 +226,9 @@ function App() {
           </h2>
              <div className="grid-3">
              {[
-               { name: "Marco, 21 anni", img: "https://i.pravatar.cc/150?u=bros1", text: "Mai messo una crema in vita mia, mi fa schifo l'effetto bagnato. Questa scompare non appena la metti e mi ha dimezzato l'acne." },
-               { name: "Ale, 18 anni", img: "https://i.pravatar.cc/150?u=bros2", text: "Ci metto 1 minuto netto e sono a posto. Il detergente fa il suo lavoro, zero tiraggio estremo della pelle. Tanta roba." },
-               { name: "Luca, 24 anni", img: "https://i.pravatar.cc/150?u=bros3", text: "La mia tipa ha smesso di dire che ho la fronte secca e unta. Questo kit ha salvato la relazione. GG." }
+               { name: "Marco, 21 anni", img: "/faccia_marco.png", text: "Mai messo una crema in vita mia, mi fa schifo l'effetto bagnato. Questa scompare non appena la metti e mi ha dimezzato l'acne." },
+               { name: "Ale, 18 anni", img: "/faccia_ale.png", text: "Ci metto 1 minuto netto e sono a posto. Il detergente fa il suo lavoro, zero tiraggio estremo della pelle. Tanta roba." },
+               { name: "Luca, 24 anni", img: "/faccia_luca.png", text: "La mia tipa ha smesso di dire che ho la fronte secca e unta. Questo kit ha salvato la relazione. GG." }
              ].map((r, i) => (
                 <div key={i} className="card" style={{ padding: '2.5rem', background: '#ffffff', border: '1px solid #e2e8f0', boxShadow: '0 20px 40px rgba(0,0,0,0.02)' }}>
                   <div style={{ display: 'flex', gap: '4px', marginBottom: '1.5rem', color: '#0b1120' }}>
@@ -247,24 +253,30 @@ function App() {
              initial={{ scale: 0.95, opacity: 0 }}
              whileInView={{ scale: 1, opacity: 1 }}
              transition={{ duration: 0.5 }}
-             style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}
+             className="grid-2" style={{ alignItems: 'center' }}
            >
-            <h2 style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', marginBottom: '1.5rem', color: '#ffffff', textTransform: 'uppercase', lineHeight: 0.9, fontWeight: 900 }}>
-              IL DROP È VICINO.
-            </h2>
-            <p style={{ fontSize: '1.25rem', marginBottom: '3rem', color: '#94a3b8', fontWeight: 500 }}>
-              Non farti trovare impreparato. Iscriviti alla lista d'attesa. Il Day 1 sganciamo le priority box per la early-gang, a prezzo sbloccato speciale.
-            </p>
-            
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <button onClick={() => setIsModalOpen(true)} className="btn btn-accent" style={{ padding: '1.2rem 3rem', fontSize: '1.2rem', whiteSpace: 'nowrap' }}>
-                SONO INTERESSATO <ArrowRight size={20} style={{ marginLeft: '8px' }}/>
-              </button>
+            <div>
+              <h2 style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', marginBottom: '1.5rem', color: '#ffffff', textTransform: 'uppercase', lineHeight: 0.9, fontWeight: 900 }}>
+                IL DROP È VICINO.
+              </h2>
+              <p style={{ fontSize: '1.25rem', marginBottom: '3rem', color: '#94a3b8', fontWeight: 500 }}>
+                Non farti trovare impreparato. Iscriviti alla lista d'attesa ufficiale. Al lancio sblocchiamo il prezzo riservato alla early-gang.
+              </p>
+              
+              <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                <button onClick={() => setIsModalOpen(true)} className="btn btn-accent" style={{ padding: '1.2rem 3rem', fontSize: '1.2rem', whiteSpace: 'nowrap' }}>
+                  SONO INTERESSATO <ArrowRight size={20} style={{ marginLeft: '8px' }}/>
+                </button>
+              </div>
+              
+              <p style={{ fontSize: '0.875rem', marginTop: '2rem', opacity: 0.6, color: 'white' }}>
+                Tranquillo. Odiamo lo spam di mail inutili esattamente quanto te.
+              </p>
             </div>
             
-            <p style={{ fontSize: '0.875rem', marginTop: '2rem', opacity: 0.6, color: 'white' }}>
-              Tranquillo. Odiamo lo spam di mail inutili esattamente quanto te.
-            </p>
+            <div style={{ padding: '0 2rem' }}>
+               <img src="/ragazzo_crema.png" alt="Target BROS" style={{ width: '100%', height: 'auto', borderRadius: '1.5rem', boxShadow: '0 20px 60px rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.1)' }} />
+            </div>
            </motion.div>
          </div>
       </section>
