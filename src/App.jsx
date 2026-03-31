@@ -21,9 +21,9 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const EmailForm = ({ id }) => (
-    <form className="input-group" onSubmit={(e) => e.preventDefault()} style={{ width: '100%' }}>
-      <input type="email" id={id} placeholder="La tua email..." className="input-field" style={{ background: '#ffffff', color: '#0b1120' }} required />
-      <button type="submit" className="btn btn-accent" style={{ whiteSpace: 'nowrap', padding: '1rem 1.5rem' }}>
+    <form onSubmit={(e) => e.preventDefault()} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+      <input type="email" id={id} placeholder="La tua email..." className="input-field" style={{ background: '#f1f5f9', border: '1px solid #e2e8f0', color: '#0b1120', width: '100%', outline: 'none' }} required />
+      <button type="submit" className="btn btn-accent" style={{ width: '100%', padding: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '1.1rem' }}>
         AVVISAMI <ArrowRight size={20} style={{ marginLeft: '8px' }}/>
       </button>
     </form>
@@ -253,30 +253,24 @@ function App() {
              initial={{ scale: 0.95, opacity: 0 }}
              whileInView={{ scale: 1, opacity: 1 }}
              transition={{ duration: 0.5 }}
-             className="grid-2" style={{ alignItems: 'center' }}
+             style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}
            >
-            <div>
-              <h2 style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', marginBottom: '1.5rem', color: '#ffffff', textTransform: 'uppercase', lineHeight: 0.9, fontWeight: 900 }}>
-                IL DROP È VICINO.
-              </h2>
-              <p style={{ fontSize: '1.25rem', marginBottom: '3rem', color: '#94a3b8', fontWeight: 500 }}>
-                Non farti trovare impreparato. Iscriviti alla lista d'attesa ufficiale. Al lancio sblocchiamo il prezzo riservato alla early-gang.
-              </p>
-              
-              <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
-                <button onClick={() => setIsModalOpen(true)} className="btn btn-accent" style={{ padding: '1.2rem 3rem', fontSize: '1.2rem', whiteSpace: 'nowrap' }}>
-                  SONO INTERESSATO <ArrowRight size={20} style={{ marginLeft: '8px' }}/>
-                </button>
-              </div>
-              
-              <p style={{ fontSize: '0.875rem', marginTop: '2rem', opacity: 0.6, color: 'white' }}>
-                Tranquillo. Odiamo lo spam di mail inutili esattamente quanto te.
-              </p>
+            <h2 style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', marginBottom: '1.5rem', color: '#ffffff', textTransform: 'uppercase', lineHeight: 0.9, fontWeight: 900 }}>
+              IL DROP È VICINO.
+            </h2>
+            <p style={{ fontSize: '1.25rem', marginBottom: '3rem', color: '#94a3b8', fontWeight: 500 }}>
+              Non farti trovare impreparato. Iscriviti alla lista d'attesa ufficiale. Al lancio sblocchiamo il prezzo riservato alla early-gang.
+            </p>
+            
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <button onClick={() => setIsModalOpen(true)} className="btn btn-accent" style={{ padding: '1.2rem 3rem', fontSize: '1.2rem', whiteSpace: 'nowrap' }}>
+                SONO INTERESSATO <ArrowRight size={20} style={{ marginLeft: '8px' }}/>
+              </button>
             </div>
             
-            <div style={{ padding: '0 2rem' }}>
-               <img src="/ragazzo_crema.png" alt="Target BROS" style={{ width: '100%', height: 'auto', borderRadius: '1.5rem', boxShadow: '0 20px 60px rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.1)' }} />
-            </div>
+            <p style={{ fontSize: '0.875rem', marginTop: '2rem', opacity: 0.6, color: 'white' }}>
+              Tranquillo. Odiamo lo spam di mail inutili esattamente quanto te.
+            </p>
            </motion.div>
          </div>
       </section>
