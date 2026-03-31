@@ -133,8 +133,8 @@ function App() {
                 <h1 style={{ fontSize: '4rem', color: '#0b1120', opacity: 0.1, position: 'absolute', top: '1rem', right: '2rem' }}>01</h1>
                 <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#0b1120' }}>IL RESET</h3>
                 <p style={{ fontSize: '1.125rem', color: '#475569', fontWeight: 500 }}>Un detergente che spazza via smog e grasso, progettato per pelle giovane. Non secca, ripristina.</p>
-                <div style={{ marginTop: '2rem', height: '260px', borderRadius: '1rem', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src="/reset.jpeg" alt="Il Reset" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', mixBlendMode: 'multiply' }} />
+                <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img src="/reset.jpeg" alt="Il Reset" style={{ width: '100%', height: 'auto', mixBlendMode: 'multiply', borderRadius: '1rem' }} />
                 </div>
               </motion.div>
               
@@ -142,8 +142,8 @@ function App() {
                 <h1 style={{ fontSize: '4rem', color: '#0b1120', opacity: 0.1, position: 'absolute', top: '1rem', right: '2rem' }}>02</h1>
                 <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#0b1120' }}>LO SCUDO</h3>
                 <p style={{ fontSize: '1.125rem', color: '#475569', fontWeight: 500 }}>Crema idratante che placa i rossori. Formulazione opaca: zero effetto lucido, non unge mai.</p>
-                <div style={{ marginTop: '2rem', height: '260px', borderRadius: '1rem', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src="/scudo.jpeg" alt="Lo Scudo" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', mixBlendMode: 'multiply' }} />
+                <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img src="/scudo.jpeg" alt="Lo Scudo" style={{ width: '100%', height: 'auto', mixBlendMode: 'multiply', borderRadius: '1rem' }} />
                 </div>
               </motion.div>
 
@@ -151,8 +151,8 @@ function App() {
                 <h1 style={{ fontSize: '4rem', color: '#0b1120', opacity: 0.1, position: 'absolute', top: '1rem', right: '2rem' }}>03</h1>
                 <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#0b1120' }}>L'UPGRADE</h3>
                 <p style={{ fontSize: '1.125rem', color: '#475569', fontWeight: 500 }}>Detergente corpo no-bs. Doccia veloce, niente profumi sgravi, niente impurità sulla schiena.</p>
-                <div style={{ marginTop: '2rem', height: '260px', borderRadius: '1rem', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src="/upgarde.jpeg" alt="L'Upgrade" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', mixBlendMode: 'multiply' }} />
+                <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img src="/upgarde.jpeg" alt="L'Upgrade" style={{ width: '100%', height: 'auto', mixBlendMode: 'multiply', borderRadius: '1rem' }} />
                 </div>
               </motion.div>
             </div>
