@@ -19,9 +19,9 @@ function App() {
   const containerRef = useRef(null);
 
   const EmailForm = ({ id }) => (
-    <form className="input-group" onSubmit={(e) => e.preventDefault()} style={{ background: '#f1f5f9', padding: '0.4rem', borderRadius: '9999px', boxShadow: '0 20px 40px rgba(0,0,0,0.05)', display: 'flex', width: '100%', maxWidth: '550px' }}>
-      <input type="email" id={id} placeholder="La tua email per sbloccare lo sconto..." className="input-field" style={{ border: 'none', background: 'transparent', color: '#0b1120', flex: 1, padding: '1rem' }} required />
-      <button type="submit" className="btn btn-accent" style={{ padding: '0.8rem 1.5rem', color: '#020617', whiteSpace: 'nowrap' }}>
+    <form className="input-group" onSubmit={(e) => e.preventDefault()} style={{ width: '100%' }}>
+      <input type="email" id={id} placeholder="La tua email..." className="input-field" style={{ background: '#ffffff', color: '#0b1120' }} required />
+      <button type="submit" className="btn btn-accent" style={{ whiteSpace: 'nowrap' }}>
         AVVISAMI AL LANCIO <ArrowRight size={20} style={{ marginLeft: '8px' }}/>
       </button>
     </form>
