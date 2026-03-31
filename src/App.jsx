@@ -120,7 +120,7 @@ function App() {
                 <div style={{ display: 'grid', gridTemplateColumns: 'minmax(280px, 1fr)', gap: '3rem' }}>
                   {[
                     { icon: Droplets, title: "IL BAGNOSCHIUMA", desc: "No bro, non va in faccia. Ti nuclearizza la pelle e la fa tirare." },
-                    { icon: ShieldCheck, title: "QUELLA RUBATA", desc: "La crema fighissima dadonna ti fa sembrare una palla da bowling unta e lucida." },
+                    { icon: ShieldCheck, title: "QUELLA RUBATA", desc: "La crema fighissima da donna ti fa sembrare una palla da bowling unta e lucida." },
                     { icon: Zap, title: "TROPPO SBATTI", desc: "I tutorial su TikTok con 10 passaggi sono roba da pazzi. Non abbiamo tempo." }
                   ].map((item, idx) => (
                     <motion.div key={idx} variants={fadeIn} style={{ borderLeft: '4px solid var(--brand-accent)', paddingLeft: '1.5rem' }}>
