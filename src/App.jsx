@@ -22,8 +22,8 @@ function App() {
   const EmailForm = ({ id }) => (
     <form className="input-group" onSubmit={(e) => e.preventDefault()} style={{ width: '100%' }}>
       <input type="email" id={id} placeholder="La tua email..." className="input-field" style={{ background: '#ffffff', color: '#0b1120' }} required />
-      <button type="submit" className="btn btn-accent" style={{ whiteSpace: 'nowrap' }}>
-        AVVISAMI AL LANCIO <ArrowRight size={20} style={{ marginLeft: '8px' }}/>
+      <button type="submit" className="btn btn-accent" style={{ whiteSpace: 'nowrap', padding: '1rem 1.5rem' }}>
+        AVVISAMI <ArrowRight size={20} style={{ marginLeft: '8px' }}/>
       </button>
     </form>
   );
