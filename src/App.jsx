@@ -66,12 +66,12 @@ function App() {
         {/* Removed Linear Gradient layer to replace it with a focused glass frame */}
 
         <div className="container" style={{ position: 'relative', zIndex: 10, width: '100%' }}>
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer} style={{ maxWidth: '650px', padding: '3rem', background: 'rgba(255, 255, 255, 0.75)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', borderRadius: '2rem', border: '1px solid rgba(255,255,255,0.6)', boxShadow: '0 40px 80px rgba(0,0,0,0.05)' }}>
+          <motion.div initial="hidden" animate="visible" variants={staggerContainer} style={{ maxWidth: '650px', padding: 'clamp(1.5rem, 5vw, 3rem)', background: 'rgba(255, 255, 255, 0.75)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', borderRadius: 'clamp(1rem, 3vw, 2rem)', border: '1px solid rgba(255,255,255,0.6)', boxShadow: '0 40px 80px rgba(0,0,0,0.05)' }}>
             
-            <motion.p variants={fadeIn} style={{ color: 'var(--brand-accent)', fontWeight: 800, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '1.5rem', display: 'inline-block', background: '#0b1120', padding: '0.4rem 1rem', borderRadius: '4px' }}>
+            <motion.p variants={fadeIn} style={{ color: 'var(--brand-accent)', fontWeight: 800, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '1.5rem', display: 'inline-block', background: '#0b1120', padding: '0.4rem 1rem', borderRadius: '4px', fontSize: 'clamp(0.7rem, 2vw, 1rem)' }}>
               Skincare essenziale per Gen-Z
             </motion.p>
-            <motion.h1 variants={fadeIn} className="hero-title" style={{ color: '#0b1120', fontSize: 'clamp(3.5rem, 8vw, 5.5rem)', textTransform: 'uppercase', lineHeight: 0.9 }}>
+            <motion.h1 variants={fadeIn} className="hero-title" style={{ color: '#0b1120', fontSize: 'clamp(2rem, 10vw, 5.5rem)', textTransform: 'uppercase', lineHeight: 0.9, overflowWrap: 'break-word', wordWrap: 'break-word' }}>
               LA TUA PELLE<br/> <span style={{ color: 'transparent', WebkitTextStroke: '2px #0b1120' }}>NON È UN BOSS</span><br/> IMPOSSIBILE.
             </motion.h1>
             <motion.p variants={fadeIn} style={{ fontSize: '1.25rem', marginBottom: '2.5rem', color: '#475569', maxWidth: '400px', marginTop: '1.5rem', fontWeight: 500, lineHeight: 1.4 }}>
