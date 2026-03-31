@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Droplets, Zap, ChevronRight, CheckCircle2, FlaskConical, Stethoscope, Star, ArrowRight } from 'lucide-react';
+import heroVideo from './assets/BROS_cream_jar_202603311348.mp4';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 30 },
@@ -75,15 +76,19 @@ function App() {
             </div>
             
             <motion.div variants={fadeIn} style={{ display: 'flex', justifyContent: 'center' }}>
-              <motion.img 
-                src="/hero_light.png" 
-                alt="BROS Skincare Product" 
+              <motion.video 
+                src={heroVideo} 
+                autoPlay 
+                loop 
+                muted 
+                playsInline
                 initial={{ y: 20 }}
                 animate={{ y: [0, -20, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
                 style={{
                   width: '100%', 
                   maxWidth: '500px', 
+                  borderRadius: '1rem',
                   mixBlendMode: 'multiply',
                   filter: 'contrast(1.05) drop-shadow(0 40px 40px rgba(0,0,0,0.1))'
                 }} 
