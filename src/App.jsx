@@ -42,7 +42,7 @@ function App() {
       </nav>
 
       {/* 1. HERO SECTION (Conversion Optimized) */}
-      <section className="section hero" style={{ backgroundColor: '#ffffff', color: '#0b1120', minHeight: '100vh', display: 'flex', alignItems: 'center', position: 'relative' }}>
+      <section className="section hero" style={{ backgroundColor: '#ffffff', color: '#0b1120', minHeight: '100vh', display: 'flex', alignItems: 'center', position: 'relative', paddingTop: '7rem' }}>
         
         {/* Animated Aura Background */}
         <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}>
