@@ -36,7 +36,7 @@ function App() {
         <div style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(2, 6, 23, 0.85)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)' }}>
           <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} style={{ background: '#ffffff', padding: 'clamp(1.5rem, 5vw, 3rem)', borderRadius: '1.5rem', width: '90%', maxWidth: '500px', position: 'relative', boxShadow: '0 40px 80px rgba(0,0,0,0.5)' }}>
             <button onClick={() => setIsModalOpen(false)} style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'none', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: '#0b1120', padding: '0.5rem' }}>✕</button>
-            <h3 style={{ fontSize: '2rem', marginBottom: '1rem', fontWeight: 900, color: '#0b1120', textTransform: 'uppercase' }}>SEI DENTRO.</h3>
+            <h3 style={{ fontSize: '2rem', marginBottom: '1rem', fontWeight: 900, color: '#0b1120', textTransform: 'uppercase' }}>CI SEI QUASI.</h3>
             <p style={{ marginBottom: '2rem', color: '#475569', fontSize: '1.1rem', fontWeight: 500 }}>Lascia la tua email per entrare nella waiting list ufficiale. Sblocchiamo lo sconto e l'accesso prioritario ai primi 500 iscritti.</p>
             <EmailForm id="popup-email" />
             <p style={{ fontSize: '0.85rem', marginTop: '1.5rem', color: '#94a3b8' }}>Nessun trucco, niente spam. Puoi disiscriverti in qualsiasi momento.</p>
