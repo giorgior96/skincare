@@ -85,7 +85,7 @@ function App() {
               Routine viso essenziale per Gen-Z
             </motion.p>
             <motion.h1 variants={fadeIn} className="hero-title" style={{ color: '#0b1120', fontSize: 'clamp(2rem, 10vw, 5.5rem)', textTransform: 'uppercase', lineHeight: 0.9, overflowWrap: 'break-word', wordWrap: 'break-word' }}>
-              IL KIT VISO<br/> <span style={{ color: 'transparent', WebkitTextStroke: '2px #0b1120' }}>DA UOMO</span><br/> SENZA GIRI DI PAROLE.
+              IL PRIMO KIT VISO<br/> ESSENZIALE<br/> <span style={{ color: 'transparent', WebkitTextStroke: '2px #0b1120' }}>PER I MASCHI.</span>
             </motion.h1>
             <motion.p variants={fadeIn} style={{ fontSize: '1.25rem', marginBottom: '2.5rem', color: '#475569', maxWidth: '400px', marginTop: '1.5rem', fontWeight: 500, lineHeight: 1.4 }}>
               Diciamocelo. Non hai voglia di passare 20 minuti davanti allo specchio. BROS è la routine da 2 minuti, progettata per i ragazzi che vogliono pelle pulita e zero sbattimenti.
@@ -134,7 +134,7 @@ function App() {
 
               {/* Right photo column for target visual ID */}
               <motion.div variants={fadeIn} style={{ position: 'relative' }}>
-                <img src="/guy.png" alt="BROS Guy" style={{ width: '100%', height: 'auto', borderRadius: '1.5rem', boxShadow: '0 20px 50px rgba(0,0,0,0.3)', objectFit: 'cover' }} />
+                <img src="/guy.png" alt="BROS Guy" loading="lazy" style={{ width: '100%', height: 'auto', borderRadius: '1.5rem', boxShadow: '0 20px 50px rgba(0,0,0,0.3)', objectFit: 'cover' }} />
               </motion.div>
             </div>
 
@@ -159,7 +159,7 @@ function App() {
                 <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#0b1120' }}>IL RESET</h3>
                 <p style={{ fontSize: '1.125rem', color: '#475569', fontWeight: 500 }}>Un detergente che spazza via smog e grasso, progettato per pelle giovane. Non secca, ripristina.</p>
                 <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src="/reset.jpeg" alt="Il Reset" style={{ width: '100%', height: 'auto', mixBlendMode: 'multiply', borderRadius: '1rem' }} />
+                  <img src="/reset.jpeg" alt="Il Reset" loading="lazy" style={{ width: '100%', height: 'auto', mixBlendMode: 'multiply', borderRadius: '1rem' }} />
                 </div>
               </motion.div>
               
@@ -168,7 +168,7 @@ function App() {
                 <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#0b1120' }}>LO SCUDO</h3>
                 <p style={{ fontSize: '1.125rem', color: '#475569', fontWeight: 500 }}>Crema idratante che placa i rossori. Formulazione opaca: zero effetto lucido, non unge mai.</p>
                 <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src="/scudo.jpeg" alt="Lo Scudo" style={{ width: '100%', height: 'auto', mixBlendMode: 'multiply', borderRadius: '1rem' }} />
+                  <img src="/scudo.jpeg" alt="Lo Scudo" loading="lazy" style={{ width: '100%', height: 'auto', mixBlendMode: 'multiply', borderRadius: '1rem' }} />
                 </div>
               </motion.div>
 
@@ -177,7 +177,7 @@ function App() {
                 <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#0b1120' }}>L'UPGRADE</h3>
                 <p style={{ fontSize: '1.125rem', color: '#475569', fontWeight: 500 }}>Detergente corpo no-bs. Doccia veloce, niente profumi sgravi, niente impurità sulla schiena.</p>
                 <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src="/upgarde.jpeg" alt="L'Upgrade" style={{ width: '100%', height: 'auto', mixBlendMode: 'multiply', borderRadius: '1rem' }} />
+                  <img src="/upgarde.jpeg" alt="L'Upgrade" loading="lazy" style={{ width: '100%', height: 'auto', mixBlendMode: 'multiply', borderRadius: '1rem' }} />
                 </div>
               </motion.div>
             </div>
@@ -211,8 +211,9 @@ function App() {
               </motion.div>
             </div>
             
-            <motion.div variants={fadeIn} style={{ display: 'flex', alignItems: 'center' }}>
-               <img src="/ragazzo_bagno.png" alt="Ragazzo che si lava il viso" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '1.5rem', boxShadow: '0 20px 50px rgba(0,0,0,0.2)' }} />
+            <motion.div variants={fadeIn} style={{ position: 'relative', width: '100%', minHeight: '450px' }}>
+               <img src="/chimici_europei.png" alt="Team di chimici" loading="lazy" style={{ position: 'absolute', top: 0, right: 0, width: '70%', height: '300px', objectFit: 'cover', borderRadius: '1.5rem', boxShadow: '0 20px 50px rgba(0,0,0,0.2)' }} />
+               <img src="/ragazzo_bagno_giovane.png" alt="Ragazzo adolescente che si lava il viso" loading="lazy" style={{ position: 'absolute', bottom: 0, left: 0, width: '70%', height: '300px', objectFit: 'cover', borderRadius: '1.5rem', boxShadow: '0 30px 60px rgba(0,0,0,0.4)', zIndex: 10, border: '6px solid var(--brand-accent)' }} />
             </motion.div>
           </motion.div>
         </div>
@@ -237,7 +238,7 @@ function App() {
                   <p style={{ fontSize: '1.25rem', color: '#0b1120', fontWeight: 600, fontStyle: 'italic', marginBottom: '1.5rem' }}>"{r.text}"</p>
                   
                   <div style={{ display: 'flex', alignItems: 'center', marginTop: 'auto' }}>
-                    <img src={r.img} alt={r.name} style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover', marginRight: '1rem' }} />
+                    <img src={r.img} alt={r.name} loading="lazy" style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover', marginRight: '1rem' }} />
                     <div style={{ fontWeight: 800, fontSize: '1rem', color: '#94a3b8', textTransform: 'uppercase' }}>{r.name}</div>
                   </div>
                 </div>
