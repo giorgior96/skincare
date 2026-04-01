@@ -149,7 +149,7 @@ function App() {
             
             <div className="text-center" style={{ maxWidth: '800px', margin: '0 auto 6rem auto' }}>
               <motion.h2 variants={fadeIn} style={{ fontSize: 'clamp(3rem, 5vw, 4rem)', color: '#0b1120', textTransform: 'uppercase', lineHeight: 0.9, fontWeight: 900 }}>
-                LA RIGENERAZIONE DEL VISO DEVE ESSERE INVISIBILE E VELOCE.
+                LA PULIZIA DELLA TUA FACCIA DEVE ESSERE INVISIBILE E VELOCE.
               </motion.h2>
             </div>
 
@@ -175,7 +175,7 @@ function App() {
               <motion.div variants={fadeIn} whileHover={{ y: -10 }} className="card" style={{ padding: '3rem 2rem', background: '#f8fafc', border: 'none' }}>
                 <h1 style={{ fontSize: '4rem', color: 'var(--brand-accent)', opacity: 0.9, position: 'absolute', top: '1rem', right: '2rem' }}>03</h1>
                 <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#0b1120' }}>L'UPGRADE</h3>
-                <p style={{ fontSize: '1.125rem', color: '#475569', fontWeight: 500 }}>Detergente corpo no-bs. Doccia veloce, niente profumi sgravi, niente impurità sulla schiena.</p>
+                <p style={{ fontSize: '1.125rem', color: '#475569', fontWeight: 500 }}>Detergente corpo senza fronzoli. Doccia veloce, zero profumi fastidiosi e addio per sempre alle impurità sulla schiena.</p>
                 <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <img src="/upgarde.jpeg" alt="L'Upgrade" loading="lazy" style={{ width: '100%', height: 'auto', mixBlendMode: 'multiply', borderRadius: '1rem' }} />
                 </div>
