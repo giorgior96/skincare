@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Droplets, Zap, ChevronRight, CheckCircle2, FlaskConical, Stethoscope, Star, ArrowRight } from 'lucide-react';
 import heroVideo from './assets/BROS_cream_jar_202603311348.mp4';
@@ -16,12 +16,85 @@ const staggerContainer = {
   }
 };
 
+const trackEvent = (eventName, data = {}) => {
+  if (typeof window === 'undefined' || typeof window.umami?.track !== 'function') {
+    return;
+  }
+
+  window.umami.track(eventName, data);
+};
+
 function App() {
   const containerRef = useRef(null);
+  const trackedProductCardsRef = useRef(new Set());
+  const trackedTestimonialsRef = useRef(new Set());
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const EmailForm = ({ id }) => (
-    <form onSubmit={(e) => e.preventDefault()} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+  useEffect(() => {
+    if (!containerRef.current) {
+      return undefined;
+    }
+
+    const viewedSections = new Set();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          const sectionName = entry.target.getAttribute('data-track-section');
+          if (!sectionName || viewedSections.has(sectionName)) {
+            return;
+          }
+
+          viewedSections.add(sectionName);
+          trackEvent('section_view', { section: sectionName });
+        });
+      },
+      { threshold: 0.45 }
+    );
+
+    const sections = containerRef.current.querySelectorAll('[data-track-section]');
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const openModal = (source) => {
+    setIsModalOpen(true);
+    trackEvent('waiting_list_modal_open', { source });
+  };
+
+  const closeModal = (source) => {
+    setIsModalOpen(false);
+    trackEvent('waiting_list_modal_close', { source });
+  };
+
+  const handleEmailSubmit = (source, id) => (e) => {
+    e.preventDefault();
+    const emailValue = e.currentTarget.elements[id]?.value ?? '';
+
+    trackEvent('waiting_list_form_submit', {
+      source,
+      has_email: Boolean(emailValue),
+    });
+  };
+
+  const trackCardInteraction = (group, item) => {
+    const trackedSet = group === 'product' ? trackedProductCardsRef.current : trackedTestimonialsRef.current;
+    const eventName = group === 'product' ? 'product_card_interaction' : 'testimonial_interaction';
+
+    if (trackedSet.has(item)) {
+      return;
+    }
+
+    trackedSet.add(item);
+    trackEvent(eventName, { item });
+  };
+
+  const EmailForm = ({ id, source }) => (
+    <form onSubmit={handleEmailSubmit(source, id)} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
       <input type="email" id={id} placeholder="La tua email..." className="input-field" style={{ background: '#f1f5f9', border: '1px solid #e2e8f0', color: '#0b1120', width: '100%', outline: 'none' }} required />
       <button type="submit" className="btn btn-accent" style={{ width: '100%', padding: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '1.1rem' }}>
         AVVISAMI <ArrowRight size={20} style={{ marginLeft: '8px' }}/>
@@ -33,12 +106,12 @@ function App() {
     <div ref={containerRef} style={{ position: 'relative', overflowX: 'hidden' }}>
       {/* Due Step Opt-in Modal */}
       {isModalOpen && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(2, 6, 23, 0.85)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)' }}>
-          <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} style={{ background: '#ffffff', padding: 'clamp(1.5rem, 5vw, 3rem)', borderRadius: '1.5rem', width: '90%', maxWidth: '500px', position: 'relative', boxShadow: '0 40px 80px rgba(0,0,0,0.5)' }}>
-            <button onClick={() => setIsModalOpen(false)} style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'none', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: '#0b1120', padding: '0.5rem' }}>✕</button>
+        <div onClick={() => closeModal('backdrop')} style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(2, 6, 23, 0.85)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)' }}>
+          <motion.div onClick={(e) => e.stopPropagation()} initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} style={{ background: '#ffffff', padding: 'clamp(1.5rem, 5vw, 3rem)', borderRadius: '1.5rem', width: '90%', maxWidth: '500px', position: 'relative', boxShadow: '0 40px 80px rgba(0,0,0,0.5)' }}>
+            <button onClick={() => closeModal('close_button')} style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'none', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: '#0b1120', padding: '0.5rem' }}>✕</button>
             <h3 style={{ fontSize: '2rem', marginBottom: '1rem', fontWeight: 900, color: '#0b1120', textTransform: 'uppercase' }}>CI SEI QUASI.</h3>
             <p style={{ marginBottom: '2rem', color: '#475569', fontSize: '1.1rem', fontWeight: 500 }}>Lascia la tua email per entrare nella waiting list ufficiale. Sblocchiamo lo sconto e l'accesso prioritario ai primi 500 iscritti.</p>
-            <EmailForm id="popup-email" />
+            <EmailForm id="popup-email" source="modal" />
             <p style={{ fontSize: '0.85rem', marginTop: '1.5rem', color: '#94a3b8' }}>Nessun trucco, niente spam. Puoi disiscriverti in qualsiasi momento.</p>
           </motion.div>
         </div>
@@ -49,14 +122,14 @@ function App() {
           <div className="logo" style={{ color: '#0b1120', fontSize: '1.8rem' }}>
             BROS<span>.</span>
           </div>
-          <button onClick={() => setIsModalOpen(true)} className="btn" style={{ padding: '0.5rem 1.2rem', fontSize: '0.9rem', border: '2px solid #0b1120', color: '#0b1120', borderRadius: '999px', background: 'transparent' }}>
+          <button onClick={() => openModal('navbar_cta')} className="btn" style={{ padding: '0.5rem 1.2rem', fontSize: '0.9rem', border: '2px solid #0b1120', color: '#0b1120', borderRadius: '999px', background: 'transparent' }}>
             Lista d'attesa
           </button>
         </div>
       </nav>
 
       {/* 1. HERO SECTION (Conversion Optimized) */}
-      <section className="section hero" style={{ backgroundColor: '#ffffff', color: '#0b1120', minHeight: '100vh', display: 'flex', alignItems: 'center', position: 'relative', paddingTop: '7rem', overflow: 'hidden' }}>
+      <section data-track-section="hero" className="section hero" style={{ backgroundColor: '#ffffff', color: '#0b1120', minHeight: '100vh', display: 'flex', alignItems: 'center', position: 'relative', paddingTop: '7rem', overflow: 'hidden' }}>
         
         {/* Full Bleed Background Video */}
         <video 
@@ -93,7 +166,7 @@ function App() {
 
             <motion.div variants={fadeIn} style={{ marginTop: '2rem' }}>
               {/* TWO STEP LEAD GEN */}
-              <button onClick={() => setIsModalOpen(true)} className="btn btn-accent" style={{ padding: '1.2rem 2.5rem', fontSize: '1.1rem', whiteSpace: 'nowrap' }}>
+              <button onClick={() => openModal('hero_cta')} className="btn btn-accent" style={{ padding: '1.2rem 2.5rem', fontSize: '1.1rem', whiteSpace: 'nowrap' }}>
                 SONO INTERESSATO <ArrowRight size={20} style={{ marginLeft: '8px' }}/>
               </button>
               <p style={{ fontSize: '0.9rem', marginTop: '1rem', color: '#64748b', fontWeight: 600 }}>
@@ -106,7 +179,7 @@ function App() {
       </section>
 
       {/* 2. IL PROBLEMA (Impact Typography) */}
-      <section className="section" style={{ background: '#020617', color: 'white' }}>
+      <section data-track-section="problema" className="section" style={{ background: '#020617', color: 'white' }}>
         <div className="container">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} style={{ maxWidth: '900px', margin: '0 auto' }}>
             
@@ -143,7 +216,7 @@ function App() {
       </section>
 
       {/* 3. LA SOLUZIONE (Minimalist Cards) */}
-      <section className="section" style={{ background: '#ffffff', overflow: 'hidden' }}>
+      <section data-track-section="soluzione" className="section" style={{ background: '#ffffff', overflow: 'hidden' }}>
         <div className="container">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
             
@@ -154,7 +227,7 @@ function App() {
             </div>
 
             <div className="grid-3">
-              <motion.div variants={fadeIn} whileHover={{ y: -10 }} className="card" style={{ padding: '3rem 2rem', background: '#f8fafc', border: 'none' }}>
+              <motion.div onMouseEnter={() => trackCardInteraction('product', 'reset')} onClick={() => trackCardInteraction('product', 'reset')} variants={fadeIn} whileHover={{ y: -10 }} className="card" style={{ padding: '3rem 2rem', background: '#f8fafc', border: 'none' }}>
                 <h1 style={{ fontSize: '4rem', color: 'var(--brand-accent)', opacity: 0.9, position: 'absolute', top: '1rem', right: '2rem' }}>01</h1>
                 <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#0b1120' }}>IL RESET</h3>
                 <p style={{ fontSize: '1.125rem', color: '#475569', fontWeight: 500 }}>Un detergente che spazza via smog e grasso, progettato per pelle giovane. Non secca, ripristina.</p>
@@ -163,7 +236,7 @@ function App() {
                 </div>
               </motion.div>
               
-              <motion.div variants={fadeIn} whileHover={{ y: -10 }} className="card" style={{ padding: '3rem 2rem', background: '#f8fafc', border: 'none' }}>
+              <motion.div onMouseEnter={() => trackCardInteraction('product', 'scudo')} onClick={() => trackCardInteraction('product', 'scudo')} variants={fadeIn} whileHover={{ y: -10 }} className="card" style={{ padding: '3rem 2rem', background: '#f8fafc', border: 'none' }}>
                 <h1 style={{ fontSize: '4rem', color: 'var(--brand-accent)', opacity: 0.9, position: 'absolute', top: '1rem', right: '2rem' }}>02</h1>
                 <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#0b1120' }}>LO SCUDO</h3>
                 <p style={{ fontSize: '1.125rem', color: '#475569', fontWeight: 500 }}>Crema idratante che placa i rossori. Formulazione opaca: zero effetto lucido, non unge mai.</p>
@@ -172,7 +245,7 @@ function App() {
                 </div>
               </motion.div>
 
-              <motion.div variants={fadeIn} whileHover={{ y: -10 }} className="card" style={{ padding: '3rem 2rem', background: '#f8fafc', border: 'none' }}>
+              <motion.div onMouseEnter={() => trackCardInteraction('product', 'upgrade')} onClick={() => trackCardInteraction('product', 'upgrade')} variants={fadeIn} whileHover={{ y: -10 }} className="card" style={{ padding: '3rem 2rem', background: '#f8fafc', border: 'none' }}>
                 <h1 style={{ fontSize: '4rem', color: 'var(--brand-accent)', opacity: 0.9, position: 'absolute', top: '1rem', right: '2rem' }}>03</h1>
                 <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#0b1120' }}>L'UPGRADE</h3>
                 <p style={{ fontSize: '1.125rem', color: '#475569', fontWeight: 500 }}>Detergente corpo senza fronzoli. Doccia veloce, zero profumi fastidiosi e addio per sempre alle impurità sulla schiena.</p>
@@ -187,7 +260,7 @@ function App() {
       </section>
 
       {/* 5. EDUCATIONAL / SCIENZA (AUTHORITY) */}
-      <section className="section" style={{ background: 'var(--brand-accent)', color: '#0b1120' }}>
+      <section data-track-section="scienza" className="section" style={{ background: 'var(--brand-accent)', color: '#0b1120' }}>
         <div className="container">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid-2">
             <div>
@@ -220,7 +293,7 @@ function App() {
       </section>
 
       {/* 6. SOCIAL PROOF */}
-      <section className="section" style={{ background: '#f8fafc' }}>
+      <section data-track-section="social_proof" className="section" style={{ background: '#f8fafc' }}>
         <div className="container">
           <h2 className="text-center" style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', marginBottom: '4rem', fontWeight: 900, textTransform: 'uppercase', color: '#0b1120' }}>
             CHI HA GIÀ FATTO I TEST.
@@ -231,7 +304,7 @@ function App() {
                { name: "Ale, 18 anni", img: "/faccia_ale.png", text: "Ci metto 1 minuto netto e sono a posto. Il detergente fa il suo lavoro, zero tiraggio estremo della pelle. Tanta roba." },
                { name: "Luca, 24 anni", img: "/faccia_luca.png", text: "La mia tipa ha smesso di dire che ho la fronte secca e unta. Questo kit ha salvato la relazione. GG." }
              ].map((r, i) => (
-                <div key={i} className="card" style={{ padding: '2.5rem', background: '#ffffff', border: '1px solid #e2e8f0', boxShadow: '0 20px 40px rgba(0,0,0,0.02)' }}>
+                <div key={i} onMouseEnter={() => trackCardInteraction('testimonial', r.name)} onClick={() => trackCardInteraction('testimonial', r.name)} className="card" style={{ padding: '2.5rem', background: '#ffffff', border: '1px solid #e2e8f0', boxShadow: '0 20px 40px rgba(0,0,0,0.02)' }}>
                   <div style={{ display: 'flex', gap: '4px', marginBottom: '1.5rem', color: '#0b1120' }}>
                     {[1,2,3,4,5].map(n => <Star key={n} size={20} fill="currentColor" />)}
                   </div>
@@ -248,7 +321,7 @@ function App() {
       </section>
 
       {/* 7. FINAL CTA (LEAD GEN) */}
-      <section id="join" className="section cta-section" style={{ background: '#020617' }}>
+      <section id="join" data-track-section="final_cta" className="section cta-section" style={{ background: '#020617' }}>
          <div className="container">
            <motion.div 
              initial={{ scale: 0.95, opacity: 0 }}
@@ -264,7 +337,7 @@ function App() {
             </p>
             
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <button onClick={() => setIsModalOpen(true)} className="btn btn-accent" style={{ padding: '1.2rem 3rem', fontSize: '1.2rem', whiteSpace: 'nowrap' }}>
+              <button onClick={() => openModal('final_cta')} className="btn btn-accent" style={{ padding: '1.2rem 3rem', fontSize: '1.2rem', whiteSpace: 'nowrap' }}>
                 SONO INTERESSATO <ArrowRight size={20} style={{ marginLeft: '8px' }}/>
               </button>
             </div>
