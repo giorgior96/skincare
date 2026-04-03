@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { ShieldCheck, Droplets, Zap, ChevronRight, CheckCircle2, FlaskConical, Stethoscope, Star, ArrowRight } from 'lucide-react';
 import heroVideo from './assets/BROS_cream_jar_202603311348.mp4';
 
+const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT ?? '';
+
 const fadeIn = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
@@ -29,6 +31,9 @@ function App() {
   const trackedProductCardsRef = useRef(new Set());
   const trackedTestimonialsRef = useRef(new Set());
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formState, setFormState] = useState({
+    modal: { status: 'idle', message: '' },
+  });
 
   useEffect(() => {
     if (!containerRef.current) {
@@ -73,12 +78,68 @@ function App() {
 
   const handleEmailSubmit = (source, id) => (e) => {
     e.preventDefault();
-    const emailValue = e.currentTarget.elements[id]?.value ?? '';
+    const form = e.currentTarget;
+    const emailValue = form.elements[id]?.value?.trim() ?? '';
+
+    setFormState((current) => ({
+      ...current,
+      [source]: { status: 'loading', message: '' },
+    }));
 
     trackEvent('waiting_list_form_submit', {
       source,
       has_email: Boolean(emailValue),
     });
+
+    if (!FORMSPREE_ENDPOINT) {
+      setFormState((current) => ({
+        ...current,
+        [source]: {
+          status: 'error',
+          message: "Manca l'endpoint Formspree. Imposta VITE_FORMSPREE_ENDPOINT.",
+        },
+      }));
+      trackEvent('waiting_list_form_error', { source, reason: 'missing_endpoint' });
+      return;
+    }
+
+    fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        email: emailValue,
+        source,
+        page: typeof window !== 'undefined' ? window.location.pathname : '/',
+      }),
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          throw new Error('request_failed');
+        }
+
+        form.reset();
+        setFormState((current) => ({
+          ...current,
+          [source]: {
+            status: 'success',
+            message: 'Perfetto. Ti avvisiamo appena apriamo.',
+          },
+        }));
+        trackEvent('waiting_list_form_success', { source });
+      })
+      .catch(() => {
+        setFormState((current) => ({
+          ...current,
+          [source]: {
+            status: 'error',
+            message: 'Invio non riuscito. Riprova tra un attimo.',
+          },
+        }));
+        trackEvent('waiting_list_form_error', { source, reason: 'request_failed' });
+      });
   };
 
   const trackCardInteraction = (group, item) => {
@@ -96,9 +157,14 @@ function App() {
   const EmailForm = ({ id, source }) => (
     <form onSubmit={handleEmailSubmit(source, id)} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
       <input type="email" id={id} placeholder="La tua email..." className="input-field" style={{ background: '#f1f5f9', border: '1px solid #e2e8f0', color: '#0b1120', width: '100%', outline: 'none' }} required />
-      <button type="submit" className="btn btn-accent" style={{ width: '100%', padding: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '1.1rem' }}>
-        AVVISAMI <ArrowRight size={20} style={{ marginLeft: '8px' }}/>
+      <button type="submit" disabled={formState[source]?.status === 'loading'} className="btn btn-accent" style={{ width: '100%', padding: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '1.1rem', opacity: formState[source]?.status === 'loading' ? 0.8 : 1 }}>
+        {formState[source]?.status === 'loading' ? 'INVIO...' : 'AVVISAMI'} <ArrowRight size={20} style={{ marginLeft: '8px' }}/>
       </button>
+      {formState[source]?.message ? (
+        <p style={{ fontSize: '0.95rem', marginBottom: 0, color: formState[source]?.status === 'success' ? '#047857' : '#b91c1c', fontWeight: 600 }}>
+          {formState[source].message}
+        </p>
+      ) : null}
     </form>
   );
 

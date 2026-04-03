@@ -14,3 +14,14 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Formspree
+
+Per salvare le email della waiting list:
+
+1. Crea un form su Formspree.
+2. Copia l'endpoint del form.
+3. Crea `.env.local` partendo da `.env.example`.
+4. Imposta `VITE_FORMSPREE_ENDPOINT`.
+
+Il form della landing invia l'email, la source della CTA e la pagina corrente.
